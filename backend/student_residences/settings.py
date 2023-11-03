@@ -36,8 +36,6 @@ if ENVIRONMENT == "local":
 
 
 ALLOWED_HOSTS = [
-    "sistemaresidenza-staging.herokuapp.com",
-    "sistemaresidenza-backend.herokuapp.com",
     "localhost",
 ]
 
@@ -128,14 +126,14 @@ SIMPLE_JWT = {
 }
 
 # CONFIGURE S3
-AWS_ACCESS_KEY_ID = env("AWS_ACCES_KEY_ID")
-AWS_SECRET_ACCESS_KEY = env("AWS_SECRET_ACCES_KEY")
+#AWS_ACCESS_KEY_ID = env("AWS_ACCES_KEY_ID")
+#AWS_SECRET_ACCESS_KEY = env("AWS_SECRET_ACCES_KEY")
 
 if ENVIRONMENT != "local":
     DEFAULT_FILE_STORAGE = "storages.backends.s3boto3.S3Boto3Storage"
     AWS_STORAGE_BUCKET_NAME = "sistemaresidenza-bucket"
     AWS_S3_REGION_NAME = "sa-east-1"
-    URL_FRONT = "https://residenza-frontend.herokuapp.com/"
+    URL_FRONT = "https://sistema-residenza.vercel.app/"
     SITE_ID = 6
 
 WSGI_APPLICATION = "student_residences.wsgi.application"
@@ -224,21 +222,15 @@ if ENVIRONMENT != "local":
 CORS_ORIGIN_ALLOW_ALL = True
 CORS_ORIGIN_WHITELIST = (
     "http://localhost",
-    "https://sistemaresidenza-backend.herokuapp.com",
-    "https://sistemaresidenza-staging.herokuapp.com",
-    "https://residenza-frontend.herokuapp.com",
     "https://sistema-residenza.vercel.app",
-     "ec2-18-231-102-178.sa-east-1.compute.amazonaws.com",
+     "https://ec2-18-231-102-178.sa-east-1.compute.amazonaws.com",
 
 )
 
 CSRF_TRUSTED_ORIGINS = [
     "http://localhost",
-    "https://sistemaresidenza-backend.herokuapp.com",
-    "https://sistemaresidenza-staging.herokuapp.com",
-    "https://residenza-frontend.herokuapp.com",
     "https://sistema-residenza.vercel.app",
-    "ec2-18-231-102-178.sa-east-1.compute.amazonaws.com",
+    "https://ec2-18-231-102-178.sa-east-1.compute.amazonaws.com",
 ]
 # CORS_ORIGIN_ALLOW_ALL = True
 # ALLOWED_HOSTS = ['*']
