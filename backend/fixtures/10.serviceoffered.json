@@ -1,0 +1,117 @@
+[
+    {
+        "model": "residence.serviceoffered",
+        "fields": {
+            "residence_id": 1,
+            "service_id": 1
+        }
+    },
+    {
+        "model": "residence.serviceoffered",
+        "fields": {
+            "residence_id": 1,
+            "service_id": 2
+        }
+    },
+    {
+        "model": "residence.serviceoffered",
+        "fields": {
+            "residence_id": 1,
+            "service_id": 3
+        }
+    },
+    {
+        "model": "residence.serviceoffered",
+        "fields": {
+            "residence_id": 1,
+            "service_id": 5
+        }
+    },
+    {
+        "model": "residence.serviceoffered",
+        "fields": {
+            "residence_id": 2,
+            "service_id": 2
+        }
+    },
+    {
+        "model": "residence.serviceoffered",
+        "fields": {
+            "residence_id": 2,
+            "service_id": 3
+        }
+    },
+    {
+        "model": "residence.serviceoffered",
+        "fields": {
+            "residence_id": 2,
+            "service_id": 4
+        }
+    },
+    {
+        "model": "residence.serviceoffered",
+        "fields": {
+            "residence_id": 3,
+            "service_id": 1
+        }
+    },
+    {
+        "model": "residence.serviceoffered",
+        "fields": {
+            "residence_id": 3,
+            "service_id": 2
+        }
+    },
+    {
+        "model": "residence.serviceoffered",
+        "fields": {
+            "residence_id": 3,
+            "service_id": 3
+        }
+    },
+    {
+        "model": "residence.serviceoffered",
+        "fields": {
+            "residence_id": 3,
+            "service_id": 5
+        }
+    },
+    {
+        "model": "residence.serviceoffered",
+        "fields": {
+            "residence_id": 3,
+            "service_id": 6
+        }
+    },
+    {
+        "model": "residence.serviceoffered",
+        "fields": {
+            "residence_id": 4,
+            "service_id": 1
+        }
+    },
+    {
+        "model": "residence.serviceoffered",
+        "fields": {
+            "residence_id": 4,
+            "service_id": 2
+        }
+    },
+    {
+        "model": "residence.serviceoffered",
+        "fields": {
+            "residence_id": 4,
+            "service_id": 3
+        }
+    },
+    {
+        "model": "residence.serviceoffered",
+        "fields": {
+            "residence_id": 5,
+            "service_id": 1
+        }
+    }
+
+]
+
+

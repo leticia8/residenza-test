@@ -1,0 +1,186 @@
+[
+    
+        {
+            "model": "reservation.serviceconsumed",
+            "fields": {
+                "amount": 1300,
+                "reservation_id": 1,
+                "service_id": 1,
+                "payment_date": "2021-06-03"
+            }
+        },
+        {
+            "model": "reservation.serviceconsumed",
+            "fields": {
+                "amount": 600,
+                "reservation_id": 1,
+                "service_id": 1,
+                "payment_date": null
+            }
+        },
+        {
+            "model": "reservation.serviceconsumed",
+            "fields": {
+                "amount": 800,
+                "reservation_id": 1,
+                "service_id": 1,
+                "payment_date": "2021-07-06"
+            }
+        },
+        {
+            "model": "reservation.serviceconsumed",
+            "fields": {
+                "amount": 700,
+                "reservation_id": 1,
+                "service_id": 2,
+                "payment_date": null
+            }
+        },
+        {
+            "model": "reservation.serviceconsumed",
+            "fields": {
+                "amount": 3500,
+                "reservation_id": 1,
+                "service_id": 3,
+                "payment_date": "2021-05-03"
+            }
+        },
+        {
+            "model": "reservation.serviceconsumed",
+            "fields": {
+                "amount": 5400,
+                "reservation_id": 1,
+                "service_id": 4,
+                "payment_date": null
+            }
+        },
+        {
+            "model": "reservation.serviceconsumed",
+            "fields": {
+                "amount": 2400,
+                "reservation_id": 2,
+                "service_id": 5,
+                "payment_date": "2021-09-03"
+            }
+        },
+        {
+            "model": "reservation.serviceconsumed",
+            "fields": {
+                "amount": 2000,
+                "reservation_id": 2,
+                "service_id": 6,
+                "payment_date": null
+            }
+        },
+        {
+            "model": "reservation.serviceconsumed",
+            "fields": {
+                "amount": 500,
+                "reservation_id": 2,
+                "service_id": 1,
+                "payment_date": null
+            }
+        },
+
+        {
+            "model": "reservation.serviceconsumed",
+            "fields": {
+                "amount": 1300,
+                "reservation_id": 4,
+                "service_id": 4,
+                "payment_date": null
+            }
+        },
+        {
+            "model": "reservation.serviceconsumed",
+            "fields": {
+                "amount": 1000,
+                "reservation_id": 4,
+                "service_id": 6,
+                "payment_date": "2021-05-03"
+            }
+        },
+        {
+            "model": "reservation.serviceconsumed",
+            "fields": {
+                "amount": 2300,
+                "reservation_id": 6,
+                "service_id": 1,
+                "payment_date": null
+            }
+        },
+        {
+            "model": "reservation.serviceconsumed",
+            "fields": {
+                "amount": 560,
+                "reservation_id": 6,
+                "service_id": 2,
+                "payment_date": null
+            }
+        },
+        {
+            "model": "reservation.serviceconsumed",
+            "fields": {
+                "amount": 6700,
+                "reservation_id": 6,
+                "service_id": 3,
+                "payment_date": null
+            }
+        },
+        {
+            "model": "reservation.serviceconsumed",
+            "fields": {
+                "amount": 500,
+                "reservation_id": 9,
+                "service_id": 1,
+                "payment_date": null
+            }
+        },
+        {
+            "model": "reservation.serviceconsumed",
+            "fields": {
+                "amount": 800,
+                "reservation_id": 9,
+                "service_id": 1,
+                "payment_date": null
+            }
+        },
+        {
+            "model": "reservation.serviceconsumed",
+            "fields": {
+                "amount": 300,
+                "reservation_id": 9,
+                "service_id": 1,
+                "payment_date": null
+            }
+        },
+        {
+            "model": "reservation.serviceconsumed",
+            "fields": {
+                "amount": 2400,
+                "reservation_id": 9,
+                "service_id": 3,
+                "payment_date": null
+            }
+        },
+        {
+            "model": "reservation.serviceconsumed",
+            "fields": {
+                "amount": 300,
+                "reservation_id": 10,
+                "service_id": 2,
+                "payment_date": null
+            }
+        },
+        {
+            "model": "reservation.serviceconsumed",
+            "fields": {
+                "amount": 700,
+                "reservation_id": 10,
+                "service_id": 2,
+                "payment_date": null
+            }
+        }
+
+    
+]

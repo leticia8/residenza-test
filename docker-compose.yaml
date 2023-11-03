@@ -1,0 +1,64 @@
+version: "3.4"
+   
+services:
+  db:
+   build: 
+     context: db
+     dockerfile: Dockerfile
+   container_name: db
+   volumes:
+      - ./data/db:/var/lib/postgresql/data
+   environment:
+    - POSTGRES_USER=gisuser
+    - POSTGRES_PASS=Password
+    - POSTGRES_DBNAME=gis
+   ports:
+   - "5432:5432"
+      
+  web:
+    build: 
+     context: backend
+     dockerfile: Dockerfile
+    container_name: backend
+    command: python manage.py runserver 0.0.0.0:8000
+    environment:
+      - DATABASE_HOST=db
+      - POSTGRES_USER=gisuser
+      - POSTGRES_PASS=Password
+      - POSTGRES_DBNAME=gis
+    volumes:
+      - ./backend/:/src/app
+    ports:
+      - "8000:8000"
+    depends_on:
+      - fixture
+
+  migrate:
+    build: 
+     context: backend
+    container_name: migrate
+    command: python manage.py migrate
+    volumes:
+      - ./backend/:/src/app
+    environment:
+      - DATABASE_HOST=db
+      - POSTGRES_USER=gisuser
+      - POSTGRES_PASS=Password
+      - POSTGRES_DBNAME=gis
+    depends_on:
+      - db
+  
+  fixture:
+    build: 
+     context: backend
+    container_name: fixture
+    command: python manage.py loaddata fixtures/*.json
+    volumes:
+      - ./backend/:/src/app
+    environment:
+      - DATABASE_HOST=db
+      - POSTGRES_USER=gisuser
+      - POSTGRES_PASS=Password
+      - POSTGRES_DBNAME=gis
+    depends_on:
+      - migrate
