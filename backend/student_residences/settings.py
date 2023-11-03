@@ -227,6 +227,9 @@ CORS_ORIGIN_WHITELIST = (
     "https://sistemaresidenza-backend.herokuapp.com",
     "https://sistemaresidenza-staging.herokuapp.com",
     "https://residenza-frontend.herokuapp.com",
+    "https://sistema-residenza.vercel.app",
+     "ec2-18-231-102-178.sa-east-1.compute.amazonaws.com",
+
 )
 
 CSRF_TRUSTED_ORIGINS = [
@@ -234,6 +237,8 @@ CSRF_TRUSTED_ORIGINS = [
     "https://sistemaresidenza-backend.herokuapp.com",
     "https://sistemaresidenza-staging.herokuapp.com",
     "https://residenza-frontend.herokuapp.com",
+    "https://sistema-residenza.vercel.app",
+    "ec2-18-231-102-178.sa-east-1.compute.amazonaws.com",
 ]
 # CORS_ORIGIN_ALLOW_ALL = True
 # ALLOWED_HOSTS = ['*']
@@ -266,10 +271,10 @@ ACCOUNT_USERNAME_REQUIRED = False
 # same but logged in
 if ENVIRONMENT != "local":
     ACCOUNT_EMAIL_CONFIRMATION_AUTHENTICATED_REDIRECT_URL = (
-        "https://residenza-frontend.herokuapp.com/ingresar"
+        "https://sistema-residenza.vercel.app/ingresar"
     )
     ACCOUNT_EMAIL_CONFIRMATION_ANONYMOUS_REDIRECT_URL = (
-        "https://residenza-frontend.herokuapp.com/ingresar"
+        "https://sistema-residenza.vercel.app/ingresar"
     )
 else:
     ACCOUNT_EMAIL_CONFIRMATION_AUTHENTICATED_REDIRECT_URL = (
