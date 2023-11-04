@@ -10,10 +10,12 @@ services:
       - ./data/db:/var/lib/postgresql/data
    environment:
     - POSTGRES_USER=gisuser
-    - POSTGRES_PASS=Password
+    - POSTGRES_PASS=run/secrets/db_password
     - POSTGRES_DBNAME=gis
    ports:
    - "5432:5432"
+   secrets:
+      - db_password
       
   web:
     build: 
@@ -24,14 +26,18 @@ services:
     environment:
       - DATABASE_HOST=db
       - POSTGRES_USER=gisuser
-      - POSTGRES_PASS=Password
+      - POSTGRES_PASS=run/secrets/db_password
       - POSTGRES_DBNAME=gis
+      - AWS_SECRET_ACCES_KEY=run/secrets/db_password
+      - AWS_ACCES_KEY_ID=run/secrets/db_password
     volumes:
       - ./backend/:/src/app
     ports:
       - "8000:8000"
     depends_on:
       - fixture
+    secrets:
+      - db_password
 
   migrate:
     build: 
@@ -43,10 +49,12 @@ services:
     environment:
       - DATABASE_HOST=db
       - POSTGRES_USER=gisuser
-      - POSTGRES_PASS=Password
+      - POSTGRES_PASS=run/secrets/db_password
       - POSTGRES_DBNAME=gis
     depends_on:
       - db
+    secrets:
+      - db_password
   
   fixture:
     build: 
@@ -58,7 +66,13 @@ services:
     environment:
       - DATABASE_HOST=db
       - POSTGRES_USER=gisuser
-      - POSTGRES_PASS=Password
+      - POSTGRES_PASS=/run/secrets/db_password
       - POSTGRES_DBNAME=gis
     depends_on:
       - migrate
+    secrets:
+      - db_password
+
+secrets:
+  db_password:
+    file: db_password.txt
