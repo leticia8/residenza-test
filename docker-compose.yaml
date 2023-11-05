@@ -10,34 +10,15 @@ services:
       - ./data/db:/var/lib/postgresql/data
    environment:
     - POSTGRES_USER=gisuser
-    - POSTGRES_PASS=run/secrets/db_password
+    - DATABASE_PASS
     - POSTGRES_DBNAME=gis
    ports:
    - "5432:5432"
-   secrets:
-      - db_password
-      
-  web:
-    build: 
-     context: backend
-     dockerfile: Dockerfile
-    container_name: backend
-    command: python manage.py runserver 0.0.0.0:8000
-    environment:
-      - DATABASE_HOST=db
-      - POSTGRES_USER=gisuser
-      - POSTGRES_PASS=run/secrets/db_password
-      - POSTGRES_DBNAME=gis
-      - AWS_SECRET_ACCES_KEY=run/secrets/db_password
-      - AWS_ACCES_KEY_ID=run/secrets/db_password
-    volumes:
-      - ./backend/:/src/app
-    ports:
-      - "8000:8000"
-    depends_on:
-      - fixture
-    secrets:
-      - db_password
+   healthcheck:
+        test: ["CMD", "curl", "-f", "http://localhost:5432"]
+        interval: 30s
+        timeout: 10s
+        retries: 5
 
   migrate:
     build: 
@@ -49,30 +30,34 @@ services:
     environment:
       - DATABASE_HOST=db
       - POSTGRES_USER=gisuser
-      - POSTGRES_PASS=run/secrets/db_password
+      - DATABASE_PASS
       - POSTGRES_DBNAME=gis
-    depends_on:
+    restart: on-failure
+    depends_on: 
       - db
-    secrets:
-      - db_password
+    links: 
+      - db
   
-  fixture:
+
+  web:
     build: 
      context: backend
-    container_name: fixture
-    command: python manage.py loaddata fixtures/*.json
-    volumes:
-      - ./backend/:/src/app
+     dockerfile: Dockerfile
+    container_name: backend
+    command: python manage.py runserver 0.0.0.0:8000
     environment:
       - DATABASE_HOST=db
       - POSTGRES_USER=gisuser
-      - POSTGRES_PASS=/run/secrets/db_password
+      - DATABASE_PASS
       - POSTGRES_DBNAME=gis
+      - AWS_SECRET_ACCES_KEY
+      - AWS_ACCES_KEY_ID
+    volumes:
+      - ./backend/:/src/app
+    ports:
+      - "8000:8000"
     depends_on:
       - migrate
-    secrets:
-      - db_password
-
-secrets:
-  db_password:
-    file: db_password.txt
+    links:
+      - db
+    restart: on-failure

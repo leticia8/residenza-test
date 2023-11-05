@@ -1,2 +1,4 @@
 env_residenza/**
 *.pyc
+.env
+db_password.txt

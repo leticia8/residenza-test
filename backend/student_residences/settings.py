@@ -159,7 +159,7 @@ else:
             "PORT": "5432",
             "NAME": env("DATABASE_NAME"),
             "USER": env("DATABASE_USER"),
-            "PASSWORD": env("POSTGRES_PASS"),
+            "PASSWORD": env("DATABASE_PASS"),
             "HOST": os.environ.get('DATABASE_HOST', 'localhost'),
             "TEST": {
                 "NAME": "test_local",
