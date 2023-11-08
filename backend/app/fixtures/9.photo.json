@@ -62,7 +62,7 @@
     },
     {
         "model": "residence.photo",
-        "pk": 7,
+        "pk": 9,
         "fields": {
             "alt_text": "foto del cuarto 1 - frente",
             "photo": "media/residence/room1.jpg",

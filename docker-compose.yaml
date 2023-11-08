@@ -1,63 +1,42 @@
 version: "3.4"
    
 services:
-  db:
-   build: 
-     context: db
-     dockerfile: Dockerfile
-   container_name: db
+  database:
+   image: kartoza/postgis:9.6-2.4
    volumes:
       - ./data/db:/var/lib/postgresql/data
    environment:
-    - POSTGRES_USER=gisuser
-    - DATABASE_PASS
-    - POSTGRES_DBNAME=gis
+      POSTGRES_USER: gisuser
+      POSTGRES_PASS: Password
+      POSTGRES_DBNAME: gis
    ports:
    - "5432:5432"
-   healthcheck:
-        test: ["CMD", "curl", "-f", "http://localhost:5432"]
-        interval: 30s
-        timeout: 10s
-        retries: 5
 
-  migrate:
-    build: 
-     context: backend
-    container_name: migrate
-    command: python manage.py migrate
-    volumes:
-      - ./backend/:/src/app
-    environment:
-      - DATABASE_HOST=db
-      - POSTGRES_USER=gisuser
-      - DATABASE_PASS
-      - POSTGRES_DBNAME=gis
-    restart: on-failure
-    depends_on: 
-      - db
-    links: 
-      - db
-  
 
-  web:
+  backend:
     build: 
      context: backend
      dockerfile: Dockerfile
     container_name: backend
-    command: python manage.py runserver 0.0.0.0:8000
+    command: bash -c "python manage.py migrate && python manage.py runserver 0.0.0.0:8000"
     environment:
-      - DATABASE_HOST=db
-      - POSTGRES_USER=gisuser
-      - DATABASE_PASS
-      - POSTGRES_DBNAME=gis
-      - AWS_SECRET_ACCES_KEY
-      - AWS_ACCES_KEY_ID
+      DATABASE_HOST: database
+      POSTGRES_USER: gisuser
+      POSTGRES_PASS: Password
+      POSTGRES_DBNAME: gis
     volumes:
-      - ./backend/:/src/app
+      - ./backend/app/:/src/app
     ports:
-      - "8000:8000"
-    depends_on:
-      - migrate
-    links:
-      - db
+    - "8000:8000"
     restart: on-failure
+    links:
+      - database
+    secrets: 
+     - db_external
+     
+secrets:
+   db_password:
+     file: db_password.txt
+   db_external:
+     external: true
+

@@ -36,7 +36,7 @@ if ENVIRONMENT == "local":
 
 
 ALLOWED_HOSTS = [
-    "localhost",
+    "*"
 ]
 
 # Application definition
@@ -157,9 +157,9 @@ else:
         "default": {
             "ENGINE": "django.contrib.gis.db.backends.postgis",
             "PORT": "5432",
-            "NAME": env("DATABASE_NAME"),
-            "USER": env("DATABASE_USER"),
-            "PASSWORD": env("DATABASE_PASS"),
+            "NAME": env("POSTGRES_DBNAME"),
+            "USER": env("POSTGRES_USER"),
+            "PASSWORD": env("POSTGRES_PASS"),
             "HOST": os.environ.get('DATABASE_HOST', 'localhost'),
             "TEST": {
                 "NAME": "test_local",
