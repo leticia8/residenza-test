@@ -43,12 +43,3 @@ services:
     restart: on-failure
     links:
       - database
-    secrets: 
-     - db_external
-     
-secrets:
-   db_password:
-     file: db_password.txt
-   db_external:
-     external: true
-
