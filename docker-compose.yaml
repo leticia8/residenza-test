@@ -8,6 +8,7 @@ services:
    environment:
       - POSTGRES_USER=gisuser
       - POSTGRES_DB=gis
+      - POSTGRES_PASS=/run/secrets/message
    ports:
    - "5432:5432"
    secrets:
@@ -31,6 +32,7 @@ services:
        MAIL_KEY: $$MAIL_KEY
        EMAIL_REGISTER: $$EMAIL_REGISTER
        SECRET_KEY: $$SECRET_KEY
+       POSTGRES_PASS: /run/secrets/message
 
      volumes:
        - ./backend/app/:/src/app
