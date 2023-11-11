@@ -6,40 +6,45 @@ services:
    volumes:
       - ./data/db:/var/lib/postgresql/data
    environment:
-      DATABASE_HOST_PROD: database
-      DATABASE_USER_PROD: ${DATABASE_USER_PROD}
-      DATABASE_PASS_PROD: ${DATABASE_PASS_PROD}
-      DATABASE_NAME_PROD: ${DATABASE_NAME_PROD}
-      AWS_ACCES_KEY_ID: ${AWS_ACCES_KEY_ID}
-      AWS_SECRET_ACCES_KEY: ${AWS_SECRET_ACCES_KEY}
-      DJANGO_SECRET_KEY: ${DJANGO_SECRET_KEY}
+      POSTGRES_USER: DATABASE_USER
+      POSTGRES_PASS: DATABASE_PASS_PROD
+      POSTGRES_DB: DATABASE_NAME
+      
    ports:
    - "5432:5432"
 
 
   backend:
-    build: 
-     context: backend
-     dockerfile: Dockerfile
-    container_name: backend
-    command: bash -c "python manage.py migrate && python manage.py runserver 0.0.0.0:8000"
-    environment:
-      DATABASE_HOST_PROD: database
-      DATABASE_USER_PROD: ${DATABASE_USER_PROD}
-      DATABASE_PASS_PROD: ${DATABASE_PASS_PROD}
-      DATABASE_NAME_PROD: ${DATABASE_NAME_PROD}
-      AWS_ACCES_KEY_ID: ${AWS_ACCES_KEY_ID}
-      AWS_SECRET_ACCES_KEY: ${AWS_SECRET_ACCES_KEY}
-      DJANGO_SECRET_KEY: ${DJANGO_SECRET_KEY}
-      ENVIRONMENT: prod
-      MAIL_USER: ${MAIL_USER}
-      MAIL_KEY: ${MAIL_KEY}
-      EMAIL_REGISTER: ${EMAIL_REGISTER}
+     build: 
+      context: backend
+      dockerfile: Dockerfile
+     container_name: backend
+     command: bash -c "python manage.py migrate && python manage.py runserver 0.0.0.0:8000"
+     environment:
+       DATABASE_HOST_PROD: database
+       DATABASE_USER_PROD: $${DATABASE_USER_PROD}
+       DATABASE_PASS_PROD: $${DATABASE_PASS_PROD}
+       DATABASE_NAME_PROD: $${DATABASE_NAME_PROD}
+       AWS_ACCES_KEY_ID: $${AWS_ACCES_KEY_ID}
+       AWS_SECRET_ACCES_KEY: $${AWS_SECRET_ACCES_KEY}
+       SECRET_KEY: $${DJANGO_SECRET_KEY}
+       ENVIRONMENT: local
+       MAIL_USER: $${MAIL_USER}
+       MAIL_KEY: $${MAIL_KEY}
+       EMAIL_REGISTER: $${EMAIL_REGISTER}
 
-    volumes:
-      - ./backend/app/:/src/app
-    ports:
-    - "8000:8000"
-    restart: on-failure
-    links:
-      - database
+     volumes:
+       - ./backend/app/:/src/app
+     ports:
+     - "8000:8000"
+     restart: on-failure
+     links:
+       - database
+     secrets:
+       - DJANGO_SECRET_KEY
+
+
+secrets:
+  DJANGO_SECRET_KEY:
+   name: "arn:aws:ssm:sa-east-1:612487716168:parameter/DJANGO_SECRET_KEY"
+   external: true

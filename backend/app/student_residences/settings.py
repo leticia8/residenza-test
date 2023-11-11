@@ -26,7 +26,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/3.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = env("DJANGO_SECRET_KEY")
+SECRET_KEY = env("SECRET_KEY")
 
 
 ENVIRONMENT = env("ENVIRONMENT")
@@ -145,10 +145,10 @@ if ENVIRONMENT != "local":
     DATABASES = {
         "default": {
             "ENGINE": "django.contrib.gis.db.backends.postgis",
-            "NAME": env("DATABASE_NAME_PROD"),
-            "USER": env("DATABASE_USER_PROD"),
+            "NAME": env("DATABASE_NAME"),
+            "USER": env("DATABASE_USER"),
             "PASSWORD": env("DATABASE_PASS_PROD"),
-            "HOST": env("DATABASE_HOST_PROD"),
+            "HOST": env("DATABASE_HOST"),
             "PORT": "5432",
         }
     }
@@ -158,9 +158,9 @@ else:
         "default": {
             "ENGINE": "django.contrib.gis.db.backends.postgis",
             "PORT": "5432",
-            "NAME": env("POSTGRES_DBNAME"),
-            "USER": env("POSTGRES_USER"),
-            "PASSWORD": env("POSTGRES_PASS"),
+            "NAME": env("DATABASE_NAME"),
+            "USER": env("DATABASE_USER"),
+            "PASSWORD": env("DATABASE_PASS_DEV"),
             "HOST": os.environ.get('DATABASE_HOST', 'localhost'),
             "TEST": {
                 "NAME": "test_local",
