@@ -8,13 +8,9 @@ services:
    environment:
       - POSTGRES_USER=gisuser
       - POSTGRES_DB=gis
-      - POSTGRES_PASS=/run/secrets/message
    ports:
    - "5432:5432"
-   secrets:
-      - message
-
-
+   
   backend:
      build: 
       context: backend
@@ -32,7 +28,6 @@ services:
        MAIL_KEY: $$MAIL_KEY
        EMAIL_REGISTER: $$EMAIL_REGISTER
        SECRET_KEY: $$SECRET_KEY
-       POSTGRES_PASS: /run/secrets/message
 
      volumes:
        - ./backend/app/:/src/app
@@ -41,9 +36,3 @@ services:
      restart: on-failure
      links:
        - database
-     secrets:
-      - message
-secrets:
-  message:
-    name: "arn:aws:ssm:sa-east-1:612487716168:parameter/POSTGRES_PASS"
-    external: true
