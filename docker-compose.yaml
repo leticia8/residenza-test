@@ -40,11 +40,3 @@ services:
      restart: on-failure
      links:
        - database
-     secrets:
-       - DJANGO_SECRET_KEY
-
-
-secrets:
-  DJANGO_SECRET_KEY:
-   name: "arn:aws:ssm:sa-east-1:612487716168:parameter/DJANGO_SECRET_KEY"
-   external: true
