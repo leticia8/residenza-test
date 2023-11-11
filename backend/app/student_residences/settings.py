@@ -29,7 +29,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 #session = boto3.Session(region_name='eu-west-1')
 #ssm = session.client('ssm')
 
-SECRET_KEY = env("AWS_ACCES_KEY_ID")
+SECRET_KEY = env("ACCES_KEY_ID")
 
 
 ENVIRONMENT = env("ENVIRONMENT")
