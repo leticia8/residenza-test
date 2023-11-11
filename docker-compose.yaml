@@ -20,10 +20,10 @@ services:
     container_name: backend
     command: bash -c "python manage.py migrate && python manage.py runserver 0.0.0.0:8000"
     environment:
-      DATABASE_HOST: database
-      POSTGRES_USER: ${DATABASE_USER_PROD}
-      POSTGRES_PASS: ${DATABASE_PASS_PROD}
-      POSTGRES_DBNAME: ${DATABASE_NAME_PROD}
+      DATABASE_HOST_PROD: database
+      DATABASE_USER_PROD: ${DATABASE_USER_PROD}
+      DATABASE_PASS_PROD: ${DATABASE_PASS_PROD}
+      DATABASE_NAME_PROD: ${DATABASE_NAME_PROD}
       AWS_ACCES_KEY_ID: ${AWS_ACCES_KEY_ID}
       AWS_SECRET_ACCES_KEY: ${AWS_SECRET_ACCES_KEY}
       ENVIRONMENT: prod
