@@ -6,9 +6,9 @@ services:
    volumes:
       - ./data/db:/var/lib/postgresql/data
    environment:
-      POSTGRES_USER: gisuser
-      POSTGRES_PASS: Password
-      POSTGRES_DBNAME: gis
+      POSTGRES_USER: ${DATABASE_USER_PROD}
+      POSTGRES_PASS: ${DATABASE_PASS_PROD}
+      POSTGRES_DBNAME: ${DATABASE_NAME_PROD}
    ports:
    - "5432:5432"
 
@@ -21,9 +21,9 @@ services:
     command: bash -c "python manage.py migrate && python manage.py runserver 0.0.0.0:8000"
     environment:
       DATABASE_HOST: database
-      POSTGRES_USER: gisuser
-      POSTGRES_PASS: Password
-      POSTGRES_DBNAME: gis
+      POSTGRES_USER: ${DATABASE_USER_PROD}
+      POSTGRES_PASS: ${DATABASE_PASS_PROD}
+      POSTGRES_DBNAME: ${DATABASE_NAME_PROD}
       AWS_ACCES_KEY_ID: ${AWS_ACCES_KEY_ID}
       AWS_SECRET_ACCES_KEY: ${AWS_SECRET_ACCES_KEY}
       ENVIRONMENT: prod
