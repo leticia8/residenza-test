@@ -26,10 +26,10 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/3.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = env("SECRET_KEY")
+SECRET_KEY = os.getenv("SECRET_KEY")
 
 
-ENVIRONMENT = env("ENVIRONMENT")
+ENVIRONMENT = os.getenv("ENVIRONMENT")
 
 # SECURITY WARNING: don't run with debug turned on in production!
 if ENVIRONMENT == "local":
@@ -127,8 +127,8 @@ SIMPLE_JWT = {
 }
 
 # CONFIGURE S3
-AWS_ACCESS_KEY_ID = env("AWS_ACCES_KEY_ID")
-AWS_SECRET_ACCESS_KEY = env("AWS_SECRET_ACCES_KEY")
+AWS_ACCESS_KEY_ID = os.getenv("AWS_ACCES_KEY_ID")
+AWS_SECRET_ACCESS_KEY = os.getenv("AWS_SECRET_ACCES_KEY")
 
 if ENVIRONMENT != "local":
     DEFAULT_FILE_STORAGE = "storages.backends.s3boto3.S3Boto3Storage"
@@ -145,10 +145,10 @@ if ENVIRONMENT != "local":
     DATABASES = {
         "default": {
             "ENGINE": "django.contrib.gis.db.backends.postgis",
-            "NAME": env("DATABASE_NAME"),
-            "USER": env("DATABASE_USER"),
-            "PASSWORD": env("DATABASE_PASS_PROD"),
-            "HOST": env("DATABASE_HOST"),
+            "NAME": os.getenv("POSTGRES_DB"),
+            "USER": os.getenv("POSTGRES_USER"),
+            "PASSWORD":  os.getenv("POSTGRES_PASS"),
+            "HOST":  os.getenv("DATABASE_HOST"),
             "PORT": "5432",
         }
     }
@@ -158,16 +158,15 @@ else:
         "default": {
             "ENGINE": "django.contrib.gis.db.backends.postgis",
             "PORT": "5432",
-            "NAME": env("DATABASE_NAME"),
-            "USER": env("DATABASE_USER"),
-            "PASSWORD": env("DATABASE_PASS_DEV"),
+            "NAME":  os.getenv("POSTGRES_DB"),
+            "USER":  os.getenv("POSTGRES_USER"),
+            "PASSWORD":  os.getenv("POSTGRES_PASS"),
             "HOST": os.environ.get('DATABASE_HOST', 'localhost'),
             "TEST": {
                 "NAME": "test_local",
             },
         }
     }
-
 
 # Password validation
 # https://docs.djangoproject.com/en/3.2/ref/settings/#auth-password-validators
@@ -245,12 +244,12 @@ if ENVIRONMENT == "local":
 # SCONFIG SENDING EMAILS
 EMAIL_BACKEND = "django.core.mail.backends.smtp.EmailBackend"
 EMAIL_HOST = "smtp.gmail.com"
-EMAIL_HOST_USER = env("MAIL_USER")
-EMAIL_HOST_PASSWORD = env("MAIL_KEY")
+EMAIL_HOST_USER = os.getenv("MAIL_USER")
+EMAIL_HOST_PASSWORD = os.getenv("MAIL_KEY")
 EMAIL_PORT = 587
 EMAIL_USE_TLS = True
-DEFAULT_FROM_EMAIL = env("MAIL_USER")
-EMAIL_REGISTER = env("EMAIL_REGISTER")
+DEFAULT_FROM_EMAIL = os.getenv("MAIL_USER")
+EMAIL_REGISTER = os.getenv("EMAIL_REGISTER")
 
 # CONFIG ALLAUTH
 LOGIN_REDIRECT_URL = "/"
