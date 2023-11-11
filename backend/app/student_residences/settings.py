@@ -30,7 +30,6 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 #ssm = session.client('ssm')
 
 SECRET_KEY = env("AWS_ACCES_KEY_ID")
-#hostname = ssm.get_parameter(Name=SECRET_KEY, WithDecryption=True)
 
 
 ENVIRONMENT = env("ENVIRONMENT")
