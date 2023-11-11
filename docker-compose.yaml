@@ -6,9 +6,9 @@ services:
    volumes:
       - ./data/db:/var/lib/postgresql/data
    environment:
-      POSTGRES_USER: $${POSTGRES_USER}
-      POSTGRES_PASS: $${POSTGRES_PASS}
-      POSTGRES_DB: $${POSTGRES_DB}
+      POSTGRES_USER: ${POSTGRES_USER}
+      POSTGRES_PASS: ${POSTGRES_PASS}
+      POSTGRES_DB: ${POSTGRES_DB}
    ports:
    - "5432:5432"
 
@@ -18,19 +18,19 @@ services:
       context: backend
       dockerfile: Dockerfile
      container_name: backend
-     command: bash -c "python manage.py migrate && python manage.py runserver 0.0.0.0:8000"
+     command: bash -c "python manage.py migrate && python manage.py runserver"
      environment:
        DATABASE_HOST: database
-       POSTGRES_USER: $${POSTGRES_USER}
-       POSTGRES_PASS: $${POSTGRES_PASS}
-       POSTGRES_DB: $${POSTGRES_DB}
-       AWS_ACCES_KEY_ID: $${AWS_ACCES_KEY_ID}
-       AWS_SECRET_ACCES_KEY: $${AWS_SECRET_ACCES_KEY}
-       ENVIRONMENT: $${ENVIRONMENT}
-       MAIL_USER: $${MAIL_USER}
-       MAIL_KEY: $${MAIL_KEY}
-       EMAIL_REGISTER: $${EMAIL_REGISTER}
-       SECRET_KEY: $${SECRET_KEY}
+       POSTGRES_USER: ${POSTGRES_USER}
+       POSTGRES_PASS: ${POSTGRES_PASS}
+       POSTGRES_DB: ${POSTGRES_DB}
+       AWS_ACCES_KEY_ID: ${AWS_ACCES_KEY_ID}
+       AWS_SECRET_ACCES_KEY: ${AWS_SECRET_ACCES_KEY}
+       ENVIRONMENT: ${ENVIRONMENT}
+       MAIL_USER: ${MAIL_USER}
+       MAIL_KEY: ${MAIL_KEY}
+       EMAIL_REGISTER: ${EMAIL_REGISTER}
+       SECRET_KEY: ${SECRET_KEY}
 
      volumes:
        - ./backend/app/:/src/app
